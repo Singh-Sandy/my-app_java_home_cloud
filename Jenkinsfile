@@ -10,4 +10,12 @@ node{
     Thanks & Regards
     Sandeep Singh''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'singh.sandi10@gmail.com'
     }
+    stage('Slack Notificaiton'){
+    slackSend baseUrl: 'https://hooks.slack.com/services/', 
+        channel: 'jenkins_pipeline_demo', 
+        color: 'good', 
+        message: 'Welcome to Jenkins, Slack!', 
+        tokenCredentialId: 'slack-demo', 
+        username: 'jenkins_pipeline_demo'
+    }
 }
