@@ -5,6 +5,13 @@ node{
     stage('Compile-Package'){
     bat 'mvn package'
     }
+    stage('SonarQube Analysis') {
+        //def mvnHome =  tool name: 'maven-3', type: 'maven'
+        withSonarQubeEnv('sonarqube-1') { 
+          //sh "${mvnHome}/bin/mvn sonar:sonar"
+        bat 'mvn sonar:sonar'    
+        }
+    }
     stage('Email Notification'){
     mail bcc: '', body: '''Hi welcome to the Jenkins email alerts
     Thanks & Regards
