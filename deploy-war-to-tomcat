@@ -8,7 +8,7 @@ node{
    stage('Deploy to Tomcat'){
       
       sshagent(['tomcat-dev']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war ssingh@http://localhost:9000:/C:/Program Files/tomcat/apache-tomcat-8.5.53/webapps'
+         bat 'scp -o StrictHostKeyChecking=no target/*.war ssingh@http://localhost:9000:/C:/Program Files/tomcat/apache-tomcat-8.5.53/webapps'
       }
    }
    stage('Email Notification'){
