@@ -17,10 +17,10 @@ node{
               def qg = waitForQualityGate()
               if (qg.status != 'OK') {
                    slackSend baseUrl: 'https://hooks.slack.com/services/',
-                   channel: '#jenkins-pipeline-demo',
+                   channel: 'jenkins-pipeline-demo',
                    color: 'danger', 
                    message: 'SonarQube Analysis Failed', 
-                   teamDomain: 'javahomecloud',
+                   //teamDomain: 'javahomecloud',
                    tokenCredentialId: 'slack-demo'
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
               }
@@ -28,17 +28,17 @@ node{
       }    
    
    stage('Email Notification'){
-      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
-      Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'hari.kammana@gmail.com'
+    mail bcc: '', body: '''Hi welcome to the Jenkins email alerts
+    Thanks & Regards
+    Sandeep Singh''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'singh.sandi10@gmail.com'
    }
-   stage('Slack Notification'){
-       slackSend baseUrl: 'https://hooks.slack.com/services/',
-       channel: '#jenkins-pipeline-demo',
-       color: 'good', 
-       message: 'Welcome to Jenkins, Slack!', 
-       teamDomain: 'javahomecloud',
-       tokenCredentialId: 'slack-demo'
-   }
-
+    
+    stage('Slack Notificaiton'){
+        slackSend baseUrl: 'https://hooks.slack.com/services/', 
+        channel: 'jenkins_pipeline_demo', 
+        color: 'good', 
+        message: 'Welcome to Jenkins, Slack!', 
+        tokenCredentialId: 'slack-demo', 
+        username: 'jenkins_pipeline_demo'
+    }
 }
